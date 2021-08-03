@@ -1,19 +1,29 @@
+import { Subscription } from 'rxjs';
+import { AuthService } from './../auth/auth.service';
 import { DataStorageService } from './../shared/data-storage.service';
-import { Component} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
 
-  constructor(private dataStoreService: DataStorageService){}
+  isAuthenticated = false;
+  private userSub: Subscription;
 
-  //@Output() featureSelected = new EventEmitter<string>();
+  constructor(private dataStoreService: DataStorageService,
+              private authService: AuthService){}
 
-  // onSelect(feature: string) {
-  //   this.featureSelected.emit(feature);
-  // }
+
+  ngOnInit(){
+
+    //if we have a user then we are logged in, that is the core
+    //idea, if no user than we are not logged in
+    this.userSub = this.authService.user.subscribe( user =>{
+        this.isAuthenticated = !user ? false : true;
+    });
+  }
 
   onSave(){
 
@@ -23,6 +33,14 @@ export class HeaderComponent {
 
   onFetch(){
     this.dataStoreService.fetchRecipe().subscribe();
+  }
+
+  onLogout(){
+    this.authService.logout();
+  }
+
+  ngOnDestroy(){
+    this.userSub.unsubscribe();
   }
 
 
