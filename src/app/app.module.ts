@@ -1,13 +1,11 @@
+import { AuthModule } from './auth/auth.module';
 import { RecipeService } from './recipes/recipe.service';
-import { CoreModule } from './core.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { RecipesModule } from './recipes/recipes.module';
-import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -24,8 +22,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
   //within your app, this is important to know
   declarations: [
     AppComponent,
-    HeaderComponent,
-    AuthComponent
+    HeaderComponent
   ],
   //imports array allows us import
   //other modules into this module
@@ -35,14 +32,13 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
   imports: [
     //theses modules ship with angular
     BrowserModule, //Browser module should only be used in one component
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     //our own custom modules
     AppRoutingModule,
     RecipesModule,
     ShoppingListModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   //he we define all the services we
   //we want to provide to the app
