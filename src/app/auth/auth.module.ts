@@ -12,10 +12,10 @@ import { NgModule } from "@angular/core";
   imports : [
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{
-
-      path: 'auth', component: AuthComponent
-
+    RouterModule.forChild([
+    {
+      //removed path here as we are using lazy loading
+      path: '', component: AuthComponent
     }]),
     SharedModule
   ]

@@ -10,7 +10,11 @@ import { RecipesComponent } from "./recipes.component";
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    //dont need to spicify '/recipe here'
+    //we are loading the recipe route via
+    //lazy loading in the 'app-routing.module.ts'
+    //so essentailly we are starting at /recipe here
+    path: '',
     component: RecipesComponent ,
     canActivate : [AuthGaurd],
     children: [

@@ -1,8 +1,5 @@
-import { AuthModule } from './auth/auth.module';
 import { RecipeService } from './recipes/recipe.service';
 import { SharedModule } from './shared/shared.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -35,10 +32,13 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     HttpClientModule,
     //our own custom modules
     AppRoutingModule,
-    RecipesModule,
-    ShoppingListModule,
-    SharedModule,
-    AuthModule
+    //dont need Recipes, shopping, and auth Module as we are
+    //lazy loading it
+    //RecipesModule,
+    //ShoppingListModule,
+    //AuthModule,
+    SharedModule
+
   ],
   //he we define all the services we
   //we want to provide to the app
